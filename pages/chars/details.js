@@ -1,4 +1,4 @@
-import Image from 'Next/Image';
+import Image from 'next/image';
 import {chars} from './../../components/data.js';
 import { useRouter } from 'next/router'
 
