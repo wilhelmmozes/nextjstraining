@@ -12,7 +12,7 @@ export default function middleware(request){
         console.log("status kosong");
         return NextResponse.rewrite(`${origin}/backoffice/login`);
     }
-    if(role)
+    // if(role )
     console.log("status ada");
     // return NextResponse.rewrite(`${request.nextUrl}`);
 
