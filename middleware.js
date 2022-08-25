@@ -9,7 +9,7 @@ export default function middleware(request){
 
     if(!status){
         console.log("status kosong");
-        return NextResponse.rewrite(`${origin}/backoffice/login`);
+        // return NextResponse.rewrite(`${origin}/backoffice/login`);
     }
     console.log("status ada");
     // return NextResponse.rewrite(`${request.nextUrl}`);

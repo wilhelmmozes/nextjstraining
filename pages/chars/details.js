@@ -9,40 +9,40 @@ export default function Chars() {
     console.log(router.query.id);
 
     return (
-        <div className="app">
-            <table>
+        <div>
                 {
-                    chars.map(char =>(
+                    chars.map((char, index) =>(
                         (char._id==router.query.id)?(
-                            <tbody key={char._id}>
-                                <tr>
-                                    {/* <td rowSpan="5"><img src={char.photoUrl} width="500" height="500"></img></td> */}
-                                    <td><Image
-                                        src={char.photoUrl}
-                                        width={400}
-                                        height={400}
-                                    /></td>
-                                    <td><h3>Name: {char.name}</h3></td>
-                                </tr>
-                                <tr>
-                                    <td>Profession: {char.profession}</td>
-                                </tr>
-                                <tr>
-                                    <td>Affiliation: {char.affiliation}</td>
-                                </tr>
-                                <tr>
-                                    <td>Position: {char.position}</td>
-                                </tr>
-                                <tr>
-                                    <td>Allies: {char.allies.map(ally => <p>{ally}</p>)}</td>
-                                </tr>
-                            </tbody>
+                            <table key={index}>
+                                <tbody>
+                                    <tr>
+                                        {/* <td rowSpan="5"><img src={char.photoUrl} width="500" height="500"></img></td> */}
+                                        <td><Image
+                                            src={char.photoUrl}
+                                            width={400}
+                                            height={400}
+                                        /></td>
+                                        <td><h3>Name: {char.name}</h3></td>
+                                    </tr>
+                                    <tr key={char.profession}>
+                                        <td>Profession: {char.profession}</td>
+                                    </tr>
+                                    <tr key={char.affiliation}>
+                                        <td>Affiliation: {char.affiliation}</td>
+                                    </tr>
+                                    <tr key={char.position}>
+                                        <td>Position: {char.position}</td>
+                                    </tr>
+                                    <tr key={char._id}>
+                                        <td>Allies: {char.allies.map(ally => <p key={ally}>{ally}</p>)}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         ):(
-                            <thead key={char._id}></thead>
+                            null
                         )
                     ))
                 }
-            </table>
         </div>
     )
 }

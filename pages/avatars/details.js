@@ -32,3 +32,8 @@
 // }
 
 // export default Details
+export default function Details() {
+    return(
+        <>default</>
+    )
+}

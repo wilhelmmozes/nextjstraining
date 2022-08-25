@@ -40,3 +40,9 @@
 // }
 
 // export default Avatars
+
+export default function Index() {
+    return(
+        <>default</>
+    )
+}
