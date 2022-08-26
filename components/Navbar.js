@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 export default function Navbar({}) {
     return (
         <div>
@@ -5,13 +7,18 @@ export default function Navbar({}) {
             {`
                 .navbar {
                     background-color: lightblue;
-                    height: 50px;
+                    height: 100px;
                 }
             `}
             </style>
             
             <div className="navbar">
-                navbar
+                <ul>
+                    <li><Link href="/meals">CSR</Link></li>
+                    <li><Link href="/meals/52926">SSR</Link></li>
+                    <li><Link href="/meals/fav">SSG</Link></li>
+                    <li><Link href="/meals/time">ISG</Link></li>
+                </ul>
             </div>
         </div>
 
