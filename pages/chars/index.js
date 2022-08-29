@@ -1,6 +1,8 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import {chars} from './../../components/data.js';
+
+
 // import Image from 'next/image'
 // import styles from '../styles/Home.module.css'
 console.log(chars);
