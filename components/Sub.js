@@ -1,44 +1,54 @@
 import { gql, useMutation } from '@apollo/client';
 import { useState } from 'react';
+import ButtonSubscribe from '@material-ui/core/Button';
 
 export default function Sub() {
+    const [subscribeData, setDataSubscribe] = useState(null);
+    let input;
+    
 
     const SUBSCRIBE = gql`
-        mutation subscribeEmail($mail: String!){
+        mutation subscribeEmail($email: String!){
             subscribeEmailToNewsletter(
-                email: $mail
+                email: $email
             ) {
                 status
             }
         }
     `;
 
-    const [subscribe, { data, loading, error }] = useMutation(SUBSCRIBE);
+    const [dataSubscribe, error, data] = useMutation(SUBSCRIBE, { errorPolicy: "all" });
 
-
-    const submitHandler = async(ev) => {
-        console.log('submitting')
-        let { target: form } = ev;
-        let email = form.querySelector('#email').value;
-        
-        // subscribe({ variables: { mail: email } })
-        subscribe({variables: {mail: email}})
-        console.log('ini emial',email);
-    }
+    const handleSubmit = async (val) => {
+        console.log(val)
+        const responseData = await dataSubscribe({
+            variables: {
+                email: val
+            }
+        })
+        if (responseData) {
+            console.log(val);
+            setDataSubscribe(responseData);
+        }
+    };
 
     return (
         <div>
-            {
-                !data ?
-                    <p></p>
-                :
-                    <p>{data.subscribeEmailToNewsletter.status}</p>
-            }
-            <form onSubmit={(ev) => {ev.preventDefault(); submitHandler(ev)}}>
-                <label >Email address</label>
-                <input type="email" id="email" name="email" placeholder="Email address" required />
-                <button type="submit">Submit</button>
+            <form
+            onSubmit={e => {
+                e.preventDefault();
+                handleSubmit(input.value);
+                input.value = '';
+            }}>
+
+                <input
+                    ref={node => {
+                        input = node;
+                }}/>
+
+                <button type="submit">subscribe</button>
+                <p>{(!error.error)?"Subscribed":error.error.message}</p>
             </form>
         </div>
-    )
+    );
 }

@@ -2,9 +2,10 @@ import React, {useState, useEffect} from 'react';
 import Link from 'next/link';
 import { gql, useQuery } from '@apollo/client';
 
+
 const GET_CATEGORIES = gql`
     query GetCategories {
-        categories {
+        categories(filters:{}) {
             items {
                 id
                 name
